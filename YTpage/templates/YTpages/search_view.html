@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Youtube</title>
+</head>
+<link rel="stylesheet" type="text/css" href="/static/pages/css/MainCss.css">
+<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+<body>
+	<header>
+		<div class="hamburger-logo">
+			<img src="/static/pages/img/hamburger_icon.svg" alt="hamburger_icon">
+		</div>
+
+		<div class="logo">
+			<a href="/YThome/"><img src="/static/pages/img/yt-logo.svg" alt="Yt-logo"></a>
+			<a href="/YThome/"><h2>YouTube</h2></a>
+		</div>
+
+		<div class="search-bar">
+			<form method="post" action="/YTsearch/">
+				{% csrf_token %}
+			<input type="search" name="search" placeholder="Search" id="search">
+			<!-- <input type="image" name="submit" src="/static/pages/img/search.svg" width="48" height="48"> -->
+		<button type="submit"><img src="/static/pages/img/search.svg"></button>
+			<!-- <img src="/static/pages/img/search.svg" > -->
+		</form>
+		</div>
+
+		<nav>
+			<ul class="nav-links">
+				<li class="nav-link"><a href="#">
+					<img src="/static/pages/img/arrow.svg" alt="upload"></a>
+				</li>
+				<li class="nav-link"><a href="#">
+					<img src="/static/pages/img/bell.svg" alt="notification"></a>
+				</li>
+				<li class="nav-link" id="li-3rd"><a href="#">
+					<img src="/static/pages/img/man.svg" alt="user-img"></a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section class="left-section">
+			<ul class="left-lists">
+				<li class="left-list">
+					<a href="/YThome/">
+					<img src="/static/pages/img/house-black.svg" alt="home">Home</a></li>
+
+				<li class="left-list"><a href="#">
+				<img src="/static/pages/img/profile-user.svg" alt="home">My channel</a></li>
+				<li class="left-list"><a href="#">
+				<img src="/static/pages/img/trending.svg" alt="home">Trending</a></li>
+				<li class="left-list"><a href="#">
+				<img src="/static/pages/img/subscription.svg" alt="home">Subscription</a></li>
+				<li class="left-list"><a href="#">
+				<img src="/static/pages/img/yt-logo.svg" alt="home">Get YouTube Premium</a></li>
+			</ul>
+			
+		</section>
+
+		<section class="right-section">
+			{% for videoId in Video_details %}
+			<div class="video-div">
+				
+				<div class="video-img" onclick="openInNewTab('https://www.youtube.com/watch?v={{ videoId.video_id }}');">
+				<!-- <img src="http://img.youtube.com/vi/{{ vedioId }}/0.jpg" alt="image" width="246" height="160"> -->
+				<a href="#">
+					<img src="http://img.youtube.com/vi/{{ videoId.video_id }}/0.jpg" alt="image" width="246" height="160">
+				</a>
+				</div>
+				<div class="video-detail" onclick="openInNewTab('https://www.youtube.com/watch?v={{ videoId.video_id }}');">
+				<a href="#">
+					<h1>{{ videoId.title }}</h1><br>
+				</a>
+				<a href="#">
+					<h4>{{ videoId.channel_name }}</h4>
+				</a>
+			    
+					<h6>{{ videoId.discription }}</h6>
+					<h5>{{ videoId.fake_percent }}% fake</h5>
+			</div>
+				</div>
+			
+			{% endfor %}
+		
+		</section>
+	</main>
+<script type="text/javascript">
+ 	function openInNewTab(url) {
+  var win = window.open(url, '_blank');
+  win.focus();
+}
+ </script>
+
+
+
+<!-- <iframe width="420" height="315"
+src="https://www.youtube.com/embed/6p8xNooPDwU">
+ -->
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>YouTube</title>
+</head>
+<style type="text/css">
+form {
+    width: 600px;
+    margin: 0 auto;
+}
+	.vii input{
+	width: 90%;
+	height: 28px;
+	font-size: 15px;
+
+}
+	.cc input{
+	width: 20%;
+	height: 28px;
+	font-size: 15px;
+
+}
+
+.search-bar button{
+	border-radius: 12px;
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+ 	font-size: 16px;
+}
+.fake_perc{
+    width: 500px;
+    margin: 0 auto;
+	/*margin-left: 43%;*/
+}
+</style>
+<body style="text-align:center; margin-top: 2%;">
+	<div>
+		<img src="http://img.youtube.com/vi/{{ videoId }}/0.jpg" alt="image" width="246" height="160">
+		<h1>{{ vidTitle }}</h1>
+	</div>
+<form method="post" class="search-bar">
+	{% csrf_token %}
+	<div class="vii"><input type="text" name="video_id_input" placeholder="YouTube Video Link" required="" ></div><br>
+	<div class="cc"><input type="text" name="comment_count" placeholder="Comment" required=""></div>
+	<br>
+	<button type="submit">Submit</button>
+</form>
+<div class="fake_perc">
+	<h2>fake: {{ fakePercent }}%</h2>
+	<h2>positive: {{ positivePercent }}</h2>
+	<h2>negative: {{ negativePercent }}</h2>
+	<h2>Normal: {{ normalPercent }}%</h2>
+
+</div>
+</body>
+</html>
